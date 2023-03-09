@@ -1,6 +1,17 @@
 # algorithm-distillation-from-conversations
 Algorithm Distillation + Pretraining Language Models with Human Preferences + Chat
 
+## Models
+
+Two models are available based on the below datasets:
+
+[Top 2 v0](https://huggingface.co/dmayhem93/Top2ADC_v0), [Random Walk v0](https://huggingface.co/dmayhem93/RandomWalkADC_v0)
+
+Top 2 seems to start grokking removing bad continuations, and random walk just feels fun to use.
+
+Not sure if not enough training or leakage due to seeing other posts, but it sometimes just expands on the previous
+thread when it samples/manually add in a \<REJECTED_UTTERANCE>, will need to add in more data for the next run to see.
+
 ## Datasets
 
 Two datasets available, based on [reddit corpus small](https://convokit.cornell.edu/documentation/reddit-small.html)
@@ -9,7 +20,7 @@ Two datasets available, based on [reddit corpus small](https://convokit.cornell.
 
 This dataset uses reddit scores to rank the different conversation replies to the current reply.
 
-It then takes the top 2 of these and does second_place_text\<rejected>first_place_text\<accepted>.
+It then takes the top 2 of these and does second_place_text\<REJECTED_UTTERANCE>first_place_text\<SELECTED_UTTERANCE>.
 
 If there's only one, or on a random chance, we just use the first place text.
 
@@ -21,9 +32,9 @@ The goal (hopefully) is to learn to use rejected text and improve on it.
 
 This dataset uses reddit scores to rank the different conversation replies to the current reply.
 
-We then do a coinflip, if 0, we add text\<rejected> and go the next reply.
+We then do a coinflip, if 0, we add text\<REJECTED_UTTERANCE> and go the next reply.
 
-If 1, or the last one, we add text\<accepted>.
+If 1, or the last one, we add text\<SELECTED_UTTERANCE>.
 
 This continues until the conversation thread has no more replies to it.
   
