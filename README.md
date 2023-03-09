@@ -1,6 +1,36 @@
 # algorithm-distillation-from-conversations
 Algorithm Distillation + Pretraining Language Models with Human Preferences + Chat
 
+## Datasets
+
+Two datasets available, based on [reddit corpus small](https://convokit.cornell.edu/documentation/reddit-small.html)
+
+### [top-2-reddit-corpus-small](https://huggingface.co/datasets/dmayhem93/top-2-reddit-corpus-small)
+
+This dataset uses reddit scores to rank the different conversation replies to the current reply.
+
+It then takes the top 2 of these and does second_place_text<rejected>first_place_text<accepted>.
+
+If there's only one, or on a random chance, we just use the first place text.
+
+This continues until the conversation thread has no more replies to it.
+  
+The goal (hopefully) is to learn to use rejected text and improve on it.
+ 
+### [random-walk-reddit-corpus-small](dmayhem93/random-walk-reddit-corpus-small)
+
+This dataset uses reddit scores to rank the different conversation replies to the current reply.
+
+We then do a coinflip, if 0, we add text<rejected> and go the next reply.
+
+If 1, or the last one, we add text<accepted>.
+
+This continues until the conversation thread has no more replies to it.
+  
+The goal (hopefully) is to learn to use rejected text as negative preferences on the direction the text should go.
+ 
+
+
 ## Citations
 ```bibtex
 @misc{https://doi.org/10.48550/arxiv.2210.14215,
