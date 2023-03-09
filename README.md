@@ -9,7 +9,7 @@ Two datasets available, based on [reddit corpus small](https://convokit.cornell.
 
 This dataset uses reddit scores to rank the different conversation replies to the current reply.
 
-It then takes the top 2 of these and does second_place_text<rejected>first_place_text<accepted>.
+It then takes the top 2 of these and does second_place_text\<rejected>first_place_text\<accepted>.
 
 If there's only one, or on a random chance, we just use the first place text.
 
@@ -21,9 +21,9 @@ The goal (hopefully) is to learn to use rejected text and improve on it.
 
 This dataset uses reddit scores to rank the different conversation replies to the current reply.
 
-We then do a coinflip, if 0, we add text<rejected> and go the next reply.
+We then do a coinflip, if 0, we add text\<rejected> and go the next reply.
 
-If 1, or the last one, we add text<accepted>.
+If 1, or the last one, we add text\<accepted>.
 
 This continues until the conversation thread has no more replies to it.
   
